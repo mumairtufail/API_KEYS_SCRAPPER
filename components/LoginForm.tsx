@@ -33,6 +33,9 @@ export function LoginForm() {
       }
       router.push("/dashboard");
       router.refresh();
+    } catch (err: any) {
+      console.error("Authentication request failed", err);
+      setError(err?.message ?? "An unexpected connection error occurred");
     } finally {
       setLoading(false);
     }
