@@ -5,8 +5,7 @@
 export const SESSION_COOKIE = "ak_session";
 const SESSION_TTL_MS = 12 * 60 * 60 * 1000; // 12 hours
 
-const VALID_EMAIL = "admin@gmail.com";
-const VALID_PASSWORD = "password";
+const VALID_PIN = "123456";
 
 function getSecret(): string {
   const secret = process.env.SESSION_SECRET;
@@ -42,8 +41,8 @@ async function sign(data: string): Promise<string> {
   return toBase64Url(sig);
 }
 
-export function checkCredentials(email: string, password: string): boolean {
-  return email.trim().toLowerCase() === VALID_EMAIL && password === VALID_PASSWORD;
+export function checkPin(pin: string): boolean {
+  return pin.trim() === VALID_PIN;
 }
 
 export async function createSessionToken(): Promise<string> {

@@ -1,13 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-import { checkCredentials, createSessionToken, SESSION_COOKIE, SESSION_MAX_AGE_SECONDS } from "@/lib/auth";
+import { checkPin, createSessionToken, SESSION_COOKIE, SESSION_MAX_AGE_SECONDS } from "@/lib/auth";
 
 export async function POST(request: NextRequest) {
   const body = await request.json().catch(() => null);
-  const email = typeof body?.email === "string" ? body.email : "";
-  const password = typeof body?.password === "string" ? body.password : "";
+  const pin = typeof body?.pin === "string" ? body.pin : "";
 
-  if (!checkCredentials(email, password)) {
-    return NextResponse.json({ error: "Invalid email or password" }, { status: 401 });
+  if (!checkPin(pin)) {
+    return NextResponse.json({ error: "Invalid security PIN" }, { status: 401 });
   }
 
   const token = await createSessionToken();
