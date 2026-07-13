@@ -67,7 +67,7 @@ export function Nav() {
             variant="ghost"
             size="sm"
             onClick={handleLogout}
-            className="text-[10px] uppercase tracking-wider font-bold text-slate-600 hover:text-red-600 border border-slate-200 hover:bg-slate-50 rounded-lg flex items-center gap-1.5 px-3 py-1.5 cursor-pointer transition-colors"
+            className="text-[10px] uppercase tracking-wider font-bold text-slate-600 hover:text-red-600 border border-slate-200 hover:bg-slate-50 rounded-xl flex items-center gap-1.5 px-3 py-1.5 cursor-pointer transition-colors"
           >
             <LogOut className="h-3.5 w-3.5" />
             Logout
