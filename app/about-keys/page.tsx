@@ -52,7 +52,7 @@ export default function AboutKeysPage() {
 
         <div className="space-y-4">
           {PROVIDERS.map((p) => (
-            <div key={p.name} className="glass-panel rounded-xl p-6 shadow-sm">
+            <div key={p.name} className="glass-panel rounded-2xl p-6 shadow-sm">
               <div className="flex items-center justify-between flex-wrap gap-2.5 mb-3 border-b border-slate-100 pb-2">
                 <h3 className="text-sm font-bold text-slate-800 font-sans">{p.name}</h3>
                 <Badge variant="outline" className={p.color}>
@@ -64,7 +64,7 @@ export default function AboutKeysPage() {
           ))}
         </div>
 
-        <div className="glass-panel rounded-xl p-6 shadow-sm border-amber-250 bg-amber-50/10">
+        <div className="glass-panel rounded-2xl p-6 shadow-sm border-amber-250 bg-amber-50/10">
           <div className="flex items-center gap-2 mb-3 border-b border-amber-100 pb-2">
             <AlertTriangle className="h-4 w-4 text-amber-600" />
             <h3 className="text-sm font-bold text-amber-800 font-sans">

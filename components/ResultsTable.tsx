@@ -44,7 +44,7 @@ function CopyButton({ text }: { text: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="p-1 rounded text-zinc-400 hover:text-[#606c38] hover:bg-[#606c38]/5 transition-colors cursor-pointer"
+      className="p-1 rounded text-zinc-400 hover:text-[#5b7060] hover:bg-[#5b7060]/5 transition-colors cursor-pointer"
       title="Copy raw key"
     >
       {copied ? (
@@ -59,7 +59,7 @@ function CopyButton({ text }: { text: string }) {
 export function ResultsTable({ findings, favorites = [], onToggleFavorite }: ResultsTableProps) {
   if (findings.length === 0) {
     return (
-      <div className="rounded-xl border border-dashed border-[#606c38]/15 bg-white/10 p-12 text-center text-sm text-zinc-500">
+      <div className="rounded-2xl border border-dashed border-slate-200 bg-white/10 p-12 text-center text-sm text-zinc-500 font-sans">
         No findings detected. Start a new scan or load previous scan history.
       </div>
     );
@@ -72,17 +72,17 @@ export function ResultsTable({ findings, favorites = [], onToggleFavorite }: Res
   };
 
   return (
-    <div className="rounded-xl border border-[#606c38]/15 bg-white/20 overflow-x-auto shadow-sm">
+    <div className="rounded-2xl border border-slate-200 bg-white/20 overflow-x-auto shadow-sm">
       <Table>
-        <TableHeader className="bg-[#606c38]/5">
-          <TableRow className="border-b border-[#606c38]/10">
+        <TableHeader className="bg-[#5b7060]/5">
+          <TableRow className="border-b border-slate-200">
             <TableHead className="w-[40px]"></TableHead>
-            <TableHead className="text-[#606c38] font-bold text-xs uppercase tracking-wider">Provider</TableHead>
-            <TableHead className="text-[#606c38] font-bold text-xs uppercase tracking-wider">Repository</TableHead>
-            <TableHead className="text-[#606c38] font-bold text-xs uppercase tracking-wider">File Path</TableHead>
-            <TableHead className="text-[#606c38] font-bold text-xs uppercase tracking-wider">Key Preview</TableHead>
-            <TableHead className="text-[#606c38] font-bold text-xs uppercase tracking-wider">Context</TableHead>
-            <TableHead className="text-[#606c38] font-bold text-xs uppercase tracking-wider text-right">Actions</TableHead>
+            <TableHead className="text-slate-700 font-bold text-xs uppercase tracking-wider font-sans">Provider</TableHead>
+            <TableHead className="text-slate-700 font-bold text-xs uppercase tracking-wider font-sans">Repository</TableHead>
+            <TableHead className="text-slate-700 font-bold text-xs uppercase tracking-wider font-sans">File Path</TableHead>
+            <TableHead className="text-slate-700 font-bold text-xs uppercase tracking-wider font-sans">Key Preview</TableHead>
+            <TableHead className="text-slate-700 font-bold text-xs uppercase tracking-wider font-sans">Context</TableHead>
+            <TableHead className="text-slate-700 font-bold text-xs uppercase tracking-wider text-right font-sans">Actions</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -92,7 +92,7 @@ export function ResultsTable({ findings, favorites = [], onToggleFavorite }: Res
             return (
               <TableRow
                 key={`${f.fileUrl}-${f.keyPreview}-${i}`}
-                className="border-b border-[#606c38]/10 hover:bg-white/40 transition-colors"
+                className="border-b border-slate-100 hover:bg-white/40 transition-colors"
               >
                 {/* Favorite Star Icon */}
                 <TableCell className="py-3 pl-4">
@@ -117,7 +117,7 @@ export function ResultsTable({ findings, favorites = [], onToggleFavorite }: Res
                   <Badge
                     variant="outline"
                     className={cn(
-                      "font-bold text-[10px] tracking-wide uppercase px-2 py-0.5 rounded-md",
+                      "font-bold text-[10px] tracking-wide uppercase px-2 py-0.5 rounded-md font-sans",
                       PROVIDER_VARIANT[f.providerId] ?? PROVIDER_VARIANT.generic
                     )}
                   >
@@ -131,7 +131,7 @@ export function ResultsTable({ findings, favorites = [], onToggleFavorite }: Res
                     href={f.repoUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 hover:text-[#606c38] hover:underline transition-colors"
+                    className="inline-flex items-center gap-1 hover:text-[#5b7060] hover:underline transition-colors font-mono"
                     title={f.repo}
                   >
                     <GitBranch className="h-3 w-3 text-zinc-400 shrink-0" />
@@ -145,7 +145,7 @@ export function ResultsTable({ findings, favorites = [], onToggleFavorite }: Res
                     href={f.fileUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 hover:text-[#606c38] hover:underline transition-colors"
+                    className="inline-flex items-center gap-1 hover:text-[#5b7060] hover:underline transition-colors font-mono"
                     title={f.file}
                   >
                     <FileText className="h-3 w-3 text-zinc-400 shrink-0" />
@@ -156,7 +156,7 @@ export function ResultsTable({ findings, favorites = [], onToggleFavorite }: Res
                 {/* Key Preview & Copy */}
                 <TableCell className="py-3 font-mono text-[11px] text-zinc-800 whitespace-nowrap">
                   <div className="flex items-center gap-1">
-                    <span>{f.keyPreview}</span>
+                    <span className="font-mono">{f.keyPreview}</span>
                     <CopyButton text={copyText} />
                   </div>
                 </TableCell>
@@ -175,7 +175,7 @@ export function ResultsTable({ findings, favorites = [], onToggleFavorite }: Res
                     href={f.fileUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-[11px] font-bold text-[#606c38] hover:text-[#4d572d] hover:underline transition-colors"
+                    className="inline-flex items-center gap-1 text-[11px] font-bold text-[#5b7060] hover:text-[#4a5b4e] hover:underline transition-colors font-sans"
                   >
                     View Source <ExternalLink className="h-3 w-3" />
                   </a>

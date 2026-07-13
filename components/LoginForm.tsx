@@ -40,9 +40,9 @@ export function LoginForm() {
 
   return (
     <div className="relative w-full max-w-md">
-      <div className="glass-panel relative rounded-2xl p-8 shadow-xl">
+      <div className="glass-panel relative rounded-3xl p-8 shadow-xl">
         <div className="flex flex-col items-center gap-3 text-center mb-8">
-          <LogoIcon className="h-16 w-16 text-[#7c3aed]" />
+          <LogoIcon className="h-16 w-16 text-[#5b7060]" />
           <div className="mt-2">
             <h1 className="text-2xl font-extrabold tracking-wider text-slate-800 uppercase font-sans">
               AK_SCANNER
@@ -62,7 +62,7 @@ export function LoginForm() {
               id="email"
               type="email"
               placeholder="admin@gmail.com"
-              className="glass-input h-11 rounded-lg px-3.5 text-sm text-[#0f172a]"
+              className="glass-input h-11 rounded-xl px-3.5 text-sm text-[#0f172a]"
               autoComplete="username"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -77,7 +77,7 @@ export function LoginForm() {
               id="password"
               type="password"
               placeholder="••••••••"
-              className="glass-input h-11 rounded-lg px-3.5 text-sm text-[#0f172a]"
+              className="glass-input h-11 rounded-xl px-3.5 text-sm text-[#0f172a]"
               autoComplete="current-password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -86,14 +86,14 @@ export function LoginForm() {
           </div>
 
           {error && (
-            <Alert variant="destructive" className="bg-destructive/10 border-destructive/20 text-destructive-foreground rounded-lg py-3">
+            <Alert variant="destructive" className="bg-destructive/10 border-destructive/20 text-destructive-foreground rounded-xl py-3">
               <AlertDescription className="text-xs">{error}</AlertDescription>
             </Alert>
           )}
 
           <Button
             type="submit"
-            className="w-full h-11 bg-[#7c3aed] hover:bg-[#6d28d9] text-white font-bold uppercase tracking-wider text-xs shadow-md shadow-[#7c3aed]/10 rounded-lg transition-all duration-200 disabled:opacity-50 cursor-pointer"
+            className="w-full h-11 bg-[#5b7060] hover:bg-[#4a5b4e] text-white font-bold uppercase tracking-wider text-xs shadow-md shadow-[#5b7060]/10 rounded-xl transition-all duration-200 disabled:opacity-50 cursor-pointer"
             disabled={loading}
           >
             {loading ? (

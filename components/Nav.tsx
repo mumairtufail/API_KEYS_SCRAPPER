@@ -28,7 +28,7 @@ export function Nav() {
         {/* Left Logo and Brand */}
         <div className="flex items-center gap-8">
           <Link href="/dashboard" className="flex items-center gap-2.5">
-            <LogoIcon className="h-7 w-7 text-[#7c3aed]" />
+            <LogoIcon className="h-7 w-7 text-[#5b7060]" />
             <span className="font-extrabold tracking-wider text-xs uppercase font-sans text-slate-800">
               AK_SCANNER
             </span>
@@ -44,12 +44,12 @@ export function Nav() {
                   href={link.href}
                   className={cn(
                     "relative py-5 text-zinc-500 transition-colors hover:text-slate-800",
-                    active && "text-[#7c3aed] font-extrabold"
+                    active && "text-[#5b7060] font-extrabold"
                   )}
                 >
                   {link.label}
                   {active && (
-                    <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#7c3aed] rounded-full" />
+                    <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-[#5b7060] rounded-full" />
                   )}
                 </Link>
               );

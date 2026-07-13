@@ -40,7 +40,7 @@ function SidebarCopyButton({ text }: { text: string }) {
   return (
     <button
       onClick={handleCopy}
-      className="p-1 rounded text-zinc-400 hover:text-[#7c3aed] hover:bg-[#7c3aed]/5 transition-colors cursor-pointer"
+      className="p-1 rounded-md text-zinc-400 hover:text-[#5b7060] hover:bg-[#5b7060]/5 transition-colors cursor-pointer"
       title="Copy raw key"
     >
       {copied ? (
@@ -216,10 +216,10 @@ export default function DashboardPage() {
           {/* Main Column (Controls + Scan results) */}
           <div className="lg:col-span-2 space-y-6">
             {/* Scan Controls Card */}
-            <div className="glass-panel rounded-xl p-6 shadow-sm">
+            <div className="glass-panel rounded-2xl p-6 shadow-sm">
               <div className="flex items-center gap-2.5 mb-5 border-b border-slate-100 pb-3">
-                <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-[#7c3aed]/10">
-                  <Sparkles className="h-3.5 w-3.5 text-[#7c3aed]" />
+                <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-[#5b7060]/10">
+                  <Sparkles className="h-3.5 w-3.5 text-[#5b7060]" />
                 </div>
                 <h2 className="text-xs font-bold text-slate-750 uppercase tracking-widest font-sans">
                   Scan Configuration
@@ -249,18 +249,18 @@ export default function DashboardPage() {
             </div>
 
             {/* Results Table Card */}
-            <div className="glass-panel rounded-xl p-6 shadow-sm">
+            <div className="glass-panel rounded-2xl p-6 shadow-sm">
               <div className="flex items-center justify-between flex-wrap gap-2 mb-5 border-b border-slate-100 pb-3">
                 <div className="flex items-center gap-2.5">
-                  <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-[#7c3aed]/10">
-                    <ShieldAlert className="h-3.5 w-3.5 text-[#7c3aed]" />
+                  <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-[#5b7060]/10">
+                    <ShieldAlert className="h-3.5 w-3.5 text-[#5b7060]" />
                   </div>
                   <h2 className="text-xs font-bold text-slate-750 uppercase tracking-widest font-sans">
                     Scan Results
                   </h2>
                 </div>
                 {findings.length > 0 && (
-                  <Badge variant="secondary" className="bg-[#7c3aed]/10 text-[#7c3aed] border border-[#7c3aed]/10 font-bold px-2 py-0.5 rounded-md text-[10px] font-mono">
+                  <Badge variant="secondary" className="bg-[#5b7060]/10 text-[#5b7060] border border-[#5b7060]/10 font-bold px-2 py-0.5 rounded-md text-[10px] font-mono">
                     {findings.length} Finding{findings.length === 1 ? "" : "s"}
                   </Badge>
                 )}
@@ -277,7 +277,7 @@ export default function DashboardPage() {
           {/* Sidebar Column (Bookmarks + History) */}
           <div className="space-y-6">
             {/* Bookmarks/Favorites Sidebar Card */}
-            <div className="glass-panel rounded-xl p-6 shadow-sm">
+            <div className="glass-panel rounded-2xl p-6 shadow-sm">
               <div className="flex items-center gap-2.5 mb-4 border-b border-slate-100 pb-3">
                 <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-amber-100 border border-amber-200">
                   <Star className="h-3.5 w-3.5 text-amber-600 fill-amber-500" />
@@ -296,7 +296,7 @@ export default function DashboardPage() {
                   {favorites.map((fav, i) => (
                     <div
                       key={`${fav.fileUrl}-${fav.keyPreview}-${i}`}
-                      className="group relative rounded-xl border border-slate-150 bg-slate-50/50 p-3.5 hover:bg-slate-50 hover:border-slate-300 transition-all duration-200"
+                      className="group relative rounded-2xl border border-slate-150 bg-slate-50/50 p-3.5 hover:bg-slate-50 hover:border-slate-300 transition-all duration-200"
                     >
                       <div className="flex items-center justify-between gap-2">
                         <Badge
@@ -328,7 +328,7 @@ export default function DashboardPage() {
                           href={fav.fileUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-[#7c3aed] hover:text-[#5b21b6] inline-flex items-center gap-0.5 shrink-0 pl-2 font-sans font-semibold transition-colors"
+                          className="text-[#5b7060] hover:text-[#4a5b4e] inline-flex items-center gap-0.5 shrink-0 pl-2 font-sans font-semibold transition-colors"
                         >
                           Link <ExternalLink className="h-2.5 w-2.5" />
                         </a>
@@ -340,7 +340,7 @@ export default function DashboardPage() {
             </div>
 
             {/* Scan History Sidebar Card */}
-            <div className="glass-panel rounded-xl p-6 shadow-sm">
+            <div className="glass-panel rounded-2xl p-6 shadow-sm">
               <div className="flex items-center gap-2.5 mb-4 border-b border-slate-100 pb-3">
                 <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-slate-100 border border-slate-200">
                   <History className="h-3.5 w-3.5 text-slate-500" />
@@ -370,7 +370,7 @@ export default function DashboardPage() {
                       <button
                         onClick={() => loadFromHistory(h.id)}
                         disabled={status === "running"}
-                        className="text-[#7c3aed] font-bold hover:text-[#5b21b6] hover:underline transition-colors disabled:opacity-40 cursor-pointer"
+                        className="text-[#5b7060] font-bold hover:text-[#4a5b4e] hover:underline transition-colors disabled:opacity-40 cursor-pointer"
                       >
                         Load
                       </button>

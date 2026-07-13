@@ -56,27 +56,27 @@
   --card-foreground: #0f172a;
   --popover: #ffffff;
   --popover-foreground: #0f172a;
-  --primary: #7c3aed;
+  --primary: #5b7060;
   --primary-foreground: #ffffff;
   --secondary: #f1f5f9;
   --secondary-foreground: #334155;
   --muted: #f8fafc;
   --muted-foreground: #64748b;
   --accent: #f1f5f9;
-  --accent-foreground: #7c3aed;
+  --accent-foreground: #5b7060;
   --destructive: #ef4444;
   --border: #e2e8f0;
   --input: #ffffff;
-  --ring: rgba(124, 58, 237, 0.2);
+  --ring: rgba(91, 112, 96, 0.2);
   
   --sidebar: #292536;
   --sidebar-foreground: #ffffff;
-  --sidebar-primary: #7c3aed;
+  --sidebar-primary: #5b7060;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: rgba(255, 255, 255, 0.08);
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: rgba(255, 255, 255, 0.05);
-  --sidebar-ring: rgba(124, 58, 237, 0.2);
+  --sidebar-ring: rgba(91, 112, 96, 0.2);
 }
 
 .dark {
@@ -87,27 +87,27 @@
   --card-foreground: #0f172a;
   --popover: #ffffff;
   --popover-foreground: #0f172a;
-  --primary: #7c3aed;
+  --primary: #5b7060;
   --primary-foreground: #ffffff;
   --secondary: #f1f5f9;
   --secondary-foreground: #334155;
   --muted: #f8fafc;
   --muted-foreground: #64748b;
   --accent: #f1f5f9;
-  --accent-foreground: #7c3aed;
+  --accent-foreground: #5b7060;
   --destructive: #ef4444;
   --border: #e2e8f0;
   --input: #ffffff;
-  --ring: rgba(124, 58, 237, 0.2);
+  --ring: rgba(91, 112, 96, 0.2);
   
   --sidebar: #292536;
   --sidebar-foreground: #ffffff;
-  --sidebar-primary: #7c3aed;
+  --sidebar-primary: #5b7060;
   --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: rgba(255, 255, 255, 0.08);
   --sidebar-accent-foreground: #ffffff;
   --sidebar-border: rgba(255, 255, 255, 0.05);
-  --sidebar-ring: rgba(124, 58, 237, 0.2);
+  --sidebar-ring: rgba(91, 112, 96, 0.2);
 }
 
 @layer base {
@@ -127,6 +127,7 @@
 .glass-panel {
   background: #ffffff;
   border: 1px solid #e2e8f0;
+  border-radius: 1.25rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -145,8 +146,8 @@
 
 .glass-input:focus {
   background: #ffffff;
-  border-color: #7c3aed;
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+  border-color: #5b7060;
+  box-shadow: 0 0 0 3px rgba(91, 112, 96, 0.15);
   outline: none;
 }
 

@@ -111,11 +111,11 @@ export function ScanButton({ running, hasFindings, onStart, onRefresh, onLoadLas
             htmlFor="gh-token"
             className="text-xs font-bold uppercase tracking-widest text-slate-500 flex items-center gap-1.5"
           >
-            <Key className="h-3.5 w-3.5 text-[#7c3aed]" />
+            <Key className="h-3.5 w-3.5 text-[#5b7060]" />
             GitHub Personal Access Token (Classic)
           </Label>
-          <div className="flex items-center gap-1.5 text-[11px] text-[#7c3aed] font-semibold">
-            <ShieldCheck className="h-3.5 w-3.5 text-[#7c3aed]" />
+          <div className="flex items-center gap-1.5 text-[11px] text-[#5b7060] font-semibold">
+            <ShieldCheck className="h-3.5 w-3.5 text-[#5b7060]" />
             Required for Code Search API
           </div>
         </div>
@@ -130,14 +130,14 @@ export function ScanButton({ running, hasFindings, onStart, onRefresh, onLoadLas
               onChange={(e) => handleTokenChange(e.target.value)}
               autoComplete="off"
               disabled={running}
-              className="glass-input h-11 w-full rounded-lg pl-3.5 pr-10 font-mono text-sm text-[#0f172a] border border-slate-200 bg-white"
+              className="glass-input h-11 w-full rounded-xl pl-3.5 pr-10 font-mono text-sm text-[#0f172a] border border-slate-200 bg-white"
             />
             <div
               className="absolute right-3.5 top-3.5 text-zinc-400"
               title={rememberToken || hasServerToken ? "Saved securely" : "Not saved"}
             >
               {rememberToken || hasServerToken ? (
-                <Lock className="h-4 w-4 text-[#7c3aed]" />
+                <Lock className="h-4 w-4 text-[#5b7060]" />
               ) : (
                 <Unlock className="h-4 w-4 text-zinc-400" />
               )}
@@ -148,7 +148,7 @@ export function ScanButton({ running, hasFindings, onStart, onRefresh, onLoadLas
             <Button
               onClick={handleSaveToServer}
               disabled={running || serverLoading}
-              className="h-11 bg-white hover:bg-slate-50 text-[#7c3aed] border border-slate-200 font-bold uppercase text-[10px] tracking-wider rounded-lg px-3.5 transition-colors cursor-pointer shrink-0 shadow-sm"
+              className="h-11 bg-white hover:bg-slate-50 text-[#5b7060] border border-slate-200 font-bold uppercase text-[10px] tracking-wider rounded-xl transition-colors cursor-pointer shrink-0 shadow-sm"
             >
               Save to Server
             </Button>
@@ -164,7 +164,7 @@ export function ScanButton({ running, hasFindings, onStart, onRefresh, onLoadLas
               disabled={running}
               className="sr-only peer"
             />
-            <div className="w-8 h-4.5 bg-zinc-200 rounded-full peer peer-focus:ring-1 peer-focus:ring-[#7c3aed]/20 peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-zinc-400 after:border-zinc-300 after:border after:rounded-full after:h-3.5 after:w-3.5 after:transition-all peer-checked:bg-[#7c3aed] peer-checked:after:bg-white peer-checked:after:border-white"></div>
+            <div className="w-8 h-4.5 bg-zinc-200 rounded-full peer peer-focus:ring-1 peer-focus:ring-[#5b7060]/20 peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-zinc-400 after:border-zinc-300 after:border after:rounded-full after:h-3.5 after:w-3.5 after:transition-all peer-checked:bg-[#5b7060] peer-checked:after:bg-white peer-checked:after:border-white"></div>
             <span className="ml-2 text-xs font-semibold text-slate-500">
               Remember token in this browser (saved locally)
             </span>
@@ -186,7 +186,7 @@ export function ScanButton({ running, hasFindings, onStart, onRefresh, onLoadLas
         <Button
           onClick={() => onStart(token)}
           disabled={running}
-          className="h-10 bg-[#7c3aed] hover:bg-[#6d28d9] text-white font-bold uppercase text-[10px] tracking-widest rounded-lg px-4 shadow-md shadow-[#7c3aed]/10 cursor-pointer flex items-center gap-1.5 transition-all duration-200"
+          className="h-10 bg-[#5b7060] hover:bg-[#4a5b4e] text-white font-bold uppercase text-[10px] tracking-widest rounded-xl px-4 shadow-md shadow-[#5b7060]/10 cursor-pointer flex items-center gap-1.5 transition-all duration-200"
         >
           <Play className="h-3.5 w-3.5" />
           Start Scan
@@ -195,7 +195,7 @@ export function ScanButton({ running, hasFindings, onStart, onRefresh, onLoadLas
           variant="secondary"
           onClick={() => onRefresh(token)}
           disabled={running}
-          className="glass-button h-10 border border-slate-200 rounded-lg px-4 text-xs font-bold uppercase tracking-wider text-slate-650 hover:text-slate-800 flex items-center gap-1.5 cursor-pointer"
+          className="glass-button h-10 border border-slate-200 rounded-xl px-4 text-xs font-bold uppercase tracking-wider text-slate-650 hover:text-slate-800 flex items-center gap-1.5 cursor-pointer"
         >
           <RotateCw className="h-3.5 w-3.5" />
           Refresh Scan
@@ -204,7 +204,7 @@ export function ScanButton({ running, hasFindings, onStart, onRefresh, onLoadLas
           variant="outline"
           onClick={onLoadLast}
           disabled={running}
-          className="glass-button h-10 border border-slate-200 rounded-lg px-4 text-xs font-bold uppercase tracking-wider text-slate-655 hover:text-slate-800 flex items-center gap-1.5 cursor-pointer"
+          className="glass-button h-10 border border-slate-200 rounded-xl px-4 text-xs font-bold uppercase tracking-wider text-slate-655 hover:text-slate-800 flex items-center gap-1.5 cursor-pointer"
         >
           <History className="h-3.5 w-3.5" />
           Load Last Scan
@@ -213,7 +213,7 @@ export function ScanButton({ running, hasFindings, onStart, onRefresh, onLoadLas
           variant="outline"
           onClick={onDownload}
           disabled={!hasFindings}
-          className="glass-button h-10 border border-slate-200 rounded-lg px-4 text-xs font-bold uppercase tracking-wider text-slate-655 hover:text-slate-800 flex items-center gap-1.5 cursor-pointer disabled:opacity-30 disabled:hover:bg-transparent"
+          className="glass-button h-10 border border-slate-200 rounded-xl px-4 text-xs font-bold uppercase tracking-wider text-slate-655 hover:text-slate-800 flex items-center gap-1.5 cursor-pointer disabled:opacity-30 disabled:hover:bg-transparent"
         >
           <Download className="h-3.5 w-3.5" />
           Download JSON
