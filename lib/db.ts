@@ -3,8 +3,12 @@ import path from "node:path";
 import fs from "node:fs";
 import type { RawFinding } from "./github";
 
-const dataDir = path.join(process.cwd(), "data");
-if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
+const isVercel = !!process.env.VERCEL;
+const dataDir = isVercel ? "/tmp" : path.join(process.cwd(), "data");
+
+if (!isVercel && !fs.existsSync(dataDir)) {
+  fs.mkdirSync(dataDir, { recursive: true });
+}
 
 const globalForDb = globalThis as unknown as { __scanDb?: Database.Database };
 
