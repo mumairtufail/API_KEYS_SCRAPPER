@@ -16,7 +16,7 @@ import { cn } from "@/lib/utils";
 
 type ScanStatus = "idle" | "running" | "done" | "error";
 
-const POLL_INTERVAL_MS = 1500;
+const POLL_INTERVAL_MS = 500;
 
 const PROVIDER_VARIANT: Record<string, string> = {
   openai: "bg-emerald-100 text-emerald-800 border-emerald-200/60",

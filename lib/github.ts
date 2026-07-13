@@ -144,57 +144,73 @@ export async function runScan(
   onProgress: (progress: ScanProgress) => void,
   onFinding: (finding: RawFinding) => void
 ): Promise<void> {
-  const allItems: GitHubSearchItem[] = [];
-  for (let q = 0; q < queries.length; q++) {
-    onProgress({ queryIndex: q + 1, totalQueries: queries.length, filesScanned: 0, totalFiles: allItems.length });
-    const items = await searchCode(queries[q], token);
-    allItems.push(...items);
-    if (q < queries.length - 1) await sleep(SEARCH_DELAY_MS);
-  }
-
-  // De-duplicate by file URL (multiple queries can surface the same file).
   const seen = new Set<string>();
-  const uniqueItems = allItems.filter((item) => {
-    if (seen.has(item.html_url)) return false;
-    seen.add(item.html_url);
-    return true;
-  });
+  let totalFilesEstimate = 0;
+  let filesScannedCount = 0;
 
-  for (let i = 0; i < uniqueItems.length; i++) {
-    const item = uniqueItems[i];
+  for (let q = 0; q < queries.length; q++) {
+    // Report initial progress for this query search
     onProgress({
-      queryIndex: queries.length,
+      queryIndex: q + 1,
       totalQueries: queries.length,
-      filesScanned: i,
-      totalFiles: uniqueItems.length,
+      filesScanned: filesScannedCount,
+      totalFiles: totalFilesEstimate,
     });
 
-    const content = await fetchRawContent(item);
-    if (content) {
-      const findings = scanContent(content);
-      for (const f of findings) {
-        onFinding({
-          providerId: f.providerId,
-          providerName: f.providerName,
-          repo: item.repository.full_name,
-          repoUrl: item.repository.html_url,
-          file: item.path,
-          fileUrl: item.html_url,
-          keyPreview: maskKey(f.match),
-          rawKey: f.match,
-          context: f.context,
-          confidence: f.confidence,
-        });
+    const items = await searchCode(queries[q], token);
+    const uniqueItemsInQuery = items.filter((item) => {
+      if (seen.has(item.html_url)) return false;
+      seen.add(item.html_url);
+      return true;
+    });
+
+    totalFilesEstimate += uniqueItemsInQuery.length;
+
+    // Immediately scan files returned by this query
+    for (let i = 0; i < uniqueItemsInQuery.length; i++) {
+      const item = uniqueItemsInQuery[i];
+      onProgress({
+        queryIndex: q + 1,
+        totalQueries: queries.length,
+        filesScanned: filesScannedCount,
+        totalFiles: totalFilesEstimate,
+      });
+
+      const content = await fetchRawContent(item);
+      if (content) {
+        const findings = scanContent(content);
+        for (const f of findings) {
+          onFinding({
+            providerId: f.providerId,
+            providerName: f.providerName,
+            repo: item.repository.full_name,
+            repoUrl: item.repository.html_url,
+            file: item.path,
+            fileUrl: item.html_url,
+            keyPreview: maskKey(f.match),
+            rawKey: f.match,
+            context: f.context,
+            confidence: f.confidence,
+          });
+        }
+      }
+      filesScannedCount++;
+
+      if (i < uniqueItemsInQuery.length - 1) {
+        await sleep(FETCH_DELAY_MS);
       }
     }
 
-    if (i < uniqueItems.length - 1) await sleep(FETCH_DELAY_MS);
+    if (q < queries.length - 1) {
+      await sleep(SEARCH_DELAY_MS);
+    }
   }
 
+  // Final progress update
   onProgress({
     queryIndex: queries.length,
     totalQueries: queries.length,
-    filesScanned: uniqueItems.length,
-    totalFiles: uniqueItems.length,
+    filesScanned: filesScannedCount,
+    totalFiles: totalFilesEstimate,
   });
 }
