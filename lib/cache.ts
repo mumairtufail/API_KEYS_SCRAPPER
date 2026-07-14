@@ -17,7 +17,6 @@ export interface ScanState {
 }
 
 interface ScanCache {
-  currentId: string | null;
   scans: Map<string, ScanState>;
 }
 
@@ -25,7 +24,7 @@ const globalForCache = globalThis as unknown as { __scanCache?: ScanCache };
 
 const cache: ScanCache =
   globalForCache.__scanCache ??
-  (globalForCache.__scanCache = { currentId: null, scans: new Map() });
+  (globalForCache.__scanCache = { scans: new Map() });
 
 export function startScan(id: string, queriesUsed: string[]): ScanState {
   const state: ScanState = {
@@ -39,7 +38,6 @@ export function startScan(id: string, queriesUsed: string[]): ScanState {
     error: null,
   };
   cache.scans.set(id, state);
-  cache.currentId = id;
   return state;
 }
 
@@ -74,15 +72,8 @@ export function getScan(id: string): ScanState | undefined {
   return cache.scans.get(id);
 }
 
-export function getCurrentScan(): ScanState | undefined {
-  return cache.currentId ? cache.scans.get(cache.currentId) : undefined;
+export function isScanRunning(id: string): boolean {
+  const scan = getScan(id);
+  return scan?.status === "running";
 }
 
-export function isScanRunning(): boolean {
-  const current = getCurrentScan();
-  return current?.status === "running";
-}
-
-export function clearCurrent() {
-  cache.currentId = null;
-}

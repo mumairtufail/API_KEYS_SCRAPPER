@@ -147,6 +147,7 @@ export default function DashboardPage() {
       }
       const data = await res.json();
       scanIdRef.current = data.scanId;
+      sessionStorage.setItem("gh_scanner_active_id", data.scanId);
       stopPolling();
       pollRef.current = setInterval(() => poll(data.scanId), POLL_INTERVAL_MS);
     },
@@ -185,19 +186,22 @@ export default function DashboardPage() {
   }, [findings]);
 
   useEffect(() => {
-    // Resume polling if a scan is already running (e.g. after a page reload).
+    // Resume polling only if this specific device has an active running scan ID
     (async () => {
-      const res = await fetch("/api/scan");
-      if (res.ok) {
-        const data = await res.json();
-        scanIdRef.current = data.id;
-        if (data.progress) setProgress(data.progress);
-        setFindings(data.findings ?? []);
-        if (data.status === "running") {
-          setStatus("running");
-          pollRef.current = setInterval(() => poll(data.id), POLL_INTERVAL_MS);
-        } else if (data.status === "done") {
-          setStatus("done");
+      const activeScanId = sessionStorage.getItem("gh_scanner_active_id");
+      if (activeScanId) {
+        const res = await fetch(`/api/scan?id=${activeScanId}`);
+        if (res.ok) {
+          const data = await res.json();
+          scanIdRef.current = data.id;
+          if (data.progress) setProgress(data.progress);
+          setFindings(data.findings ?? []);
+          if (data.status === "running") {
+            setStatus("running");
+            pollRef.current = setInterval(() => poll(data.id), POLL_INTERVAL_MS);
+          } else if (data.status === "done") {
+            setStatus("done");
+          }
         }
       }
       await refreshHistory();
