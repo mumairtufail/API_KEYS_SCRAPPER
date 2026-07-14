@@ -10,7 +10,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-import { ExternalLink, Copy, Check, Star, GitBranch, FileText } from "lucide-react";
+import { ExternalLink, Copy, Check, Star, GitBranch, FileText, Loader2 } from "lucide-react";
 import type { RawFinding } from "@/lib/github";
 import { cn } from "@/lib/utils";
 
@@ -25,6 +25,7 @@ interface ResultsTableProps {
   findings: RawFinding[];
   favorites?: RawFinding[];
   onToggleFavorite?: (finding: RawFinding) => void;
+  running?: boolean;
 }
 
 function CopyButton({ text }: { text: string }) {
@@ -56,8 +57,51 @@ function CopyButton({ text }: { text: string }) {
   );
 }
 
-export function ResultsTable({ findings, favorites = [], onToggleFavorite }: ResultsTableProps) {
-  if (findings.length === 0) {
+function TableSkeletonRow() {
+  return (
+    <TableRow className="border-b border-slate-100 animate-pulse bg-slate-50/20">
+      {/* Favorite Star placeholder */}
+      <TableCell className="py-4 pl-4 w-[40px]">
+        <div className="h-4 w-4 bg-zinc-200 rounded" />
+      </TableCell>
+
+      {/* Provider Badge placeholder */}
+      <TableCell className="py-4">
+        <div className="h-5 w-16 bg-zinc-200 rounded-md" />
+      </TableCell>
+
+      {/* Repo placeholder */}
+      <TableCell className="py-4 max-w-[160px]">
+        <div className="h-3.5 w-24 bg-zinc-200 rounded" />
+      </TableCell>
+
+      {/* File Path placeholder */}
+      <TableCell className="py-4 max-w-[180px]">
+        <div className="h-3.5 w-28 bg-zinc-200 rounded" />
+      </TableCell>
+
+      {/* Key Preview placeholder */}
+      <TableCell className="py-4">
+        <div className="h-3.5 w-32 bg-zinc-200 rounded font-mono" />
+      </TableCell>
+
+      {/* Context placeholder */}
+      <TableCell className="py-4 max-w-[280px]">
+        <div className="h-3.5 w-44 bg-zinc-200 rounded" />
+      </TableCell>
+
+      {/* View Source placeholder */}
+      <TableCell className="py-4 text-right pr-4">
+        <div className="inline-flex items-center gap-1 text-[11px] font-bold text-zinc-300">
+          Scanning... <Loader2 className="h-3 w-3 animate-spin text-zinc-400" />
+        </div>
+      </TableCell>
+    </TableRow>
+  );
+}
+
+export function ResultsTable({ findings, favorites = [], onToggleFavorite, running = false }: ResultsTableProps) {
+  if (findings.length === 0 && !running) {
     return (
       <div className="rounded-2xl border border-dashed border-slate-200 bg-white/10 p-12 text-center text-sm text-zinc-500 font-sans">
         No findings detected. Start a new scan or load previous scan history.
@@ -183,6 +227,14 @@ export function ResultsTable({ findings, favorites = [], onToggleFavorite }: Res
               </TableRow>
             );
           })}
+
+          {/* Render animated skeletons at the bottom of the table if scanning */}
+          {running && (
+            <>
+              <TableSkeletonRow />
+              <TableSkeletonRow />
+            </>
+          )}
         </TableBody>
       </Table>
     </div>

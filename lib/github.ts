@@ -5,8 +5,8 @@ import axios, { AxiosError } from "axios";
 import { scanContent, maskKey } from "./patterns";
 
 const GITHUB_API = "https://api.github.com";
-const SEARCH_DELAY_MS = 1800; // stay well under GitHub's search rate limit
-const FETCH_DELAY_MS = 350; // gentle pacing between raw file fetches
+const SEARCH_DELAY_MS = 1000; // fast search pacing
+const FETCH_DELAY_MS = 30; // 10x faster file fetches
 const RESULTS_PER_QUERY = 30; // first page only, keeps a scan bounded
 
 export const DEFAULT_QUERIES = [

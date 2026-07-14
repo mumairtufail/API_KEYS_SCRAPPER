@@ -270,6 +270,7 @@ export default function DashboardPage() {
                 findings={findings}
                 favorites={favorites}
                 onToggleFavorite={toggleFavorite}
+                running={status === "running"}
               />
             </div>
           </div>
